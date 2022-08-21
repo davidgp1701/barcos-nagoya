@@ -1,0 +1,130 @@
+# Nitpick configuration
+# https://nitpick.readthedocs.io
+[tool.nitpick]
+cache = "never"
+style = [
+  "./../nitpick/styles/python/mypy.toml",
+  "./../nitpick/styles/python/poetry-mypy.toml",
+]
+
+# Poetry
+# https://python-poetry.org/
+[tool.poetry]
+name = "barcos_nagoya"
+version = "0.0.1"
+description = "Python scripts that checks ships comming for Nagoya to Sagunto"
+readme = "README.md"
+repository = "https://github.com/davidgp1701/barcos-nagoya"
+authors = [
+  "David Garcia Perez",
+]
+maintainers = [
+  "David Garcia Perez",
+]
+
+packages = [
+  { include = "*", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dateutil = "^2.8.2"
+requests = "^2.28"
+
+[tool.poetry.dev-dependencies]
+# tools
+black = "^22.3.0"
+flake8 = "^5.0"
+mypy = ">=0.941"
+pylint = "^2.14"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# Pytest
+# https://docs.pytest.org
+# [tool.pytest.ini_options]
+# minversion = "6.0"
+# testpaths = [
+#   "tests",
+# ]
+# log_level = "INFO"
+# log_cli = "true"
+# log_cli_level = "DEBUG"
+# mock_traceback_monkeypatch = false
+
+# Black
+# https://github.com/psf/black
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.direnv
+  | \.venv
+  | \.mypy_cache
+  | \.pytest_cache
+  | __pycache__
+  | build
+  | dist
+)/
+'''
+
+# isort
+# https://github.com/PyCQA/isort
+[tool.isort]
+profile = "black"
+py_version = 39
+line_length = 120
+extend_skip = [
+  '.git',
+  '.direnv',
+  '.venv',
+  '.mypy_cache',
+  '.pytest_cache',
+  '__pycache__',
+  'build',
+  'dist',
+]
+
+# Pylint
+# https://github.com/PyCQA/pylint
+[tool.pylint.MASTER]
+py-version = '3.9'
+ignore = [
+  '.git',
+  '.direnv',
+  '.venv',
+  '.mypy_cache',
+  '.pytest_cache',
+  '__pycache__',
+  'build',
+  'dist',
+]
+
+[tool.pylint.FORMAT]
+max-line-length = 120
+
+[tool.pylint.LOGGING]
+logging-format-style = 'old'
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = ['C0114', 'C0115', 'C0116']
+
+[tool.pylint.REPORTS]
+output-format = 'colorized'
+
+# Mypy
+# https://mypy.readthedocs.io/
+[tool.mypy]
+python_version = '3.9'
+disallow_untyped_defs = true
+pretty = true
+show_error_context = true
+show_column_numbers = true
+show_error_codes = true
+
+ignore_missing_imports = true
