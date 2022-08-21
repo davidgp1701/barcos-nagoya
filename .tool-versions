@@ -1,0 +1,4 @@
+editorconfig-checker 2.4.0
+python 3.10.4
+shellcheck 0.8.0
+shfmt 3.4.3
