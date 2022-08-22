@@ -27,6 +27,9 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
+# lxml needed for Pandas to read HTML
+lxml = "^4.9.1"
+pandas = "^1.4.3"
 python = "^3.10"
 python-dateutil = "^2.8.2"
 requests = "^2.28"
