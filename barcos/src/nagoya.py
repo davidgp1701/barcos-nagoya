@@ -71,6 +71,7 @@ def get_forward_movements():
 
 
 def update_forward_movements():
+    print("Starting to process Nagoya data")
     ships = get_forward_movements()
 
     sheet = sheets.get_sheet(worksheet_title)
@@ -78,8 +79,9 @@ def update_forward_movements():
     previous_data["Fecha"] = pd.to_datetime(previous_data["Fecha"], format="%Y/%m/%d %H:%M")
 
     final = pd.concat([ships, previous_data]).drop_duplicates().reset_index(drop=True)
-
-    final = final.sort_values(by=["Fecha"])
+    final = final.sort_values(by=["Fecha"]).drop_duplicates(subset=["Nombre", "Estado", "Embarcadero"], keep="last")
     final = final.drop(final[final["Fecha"] < datetime.now() - timedelta(days=60)].index)
 
-    sheet = sheet.df_to_sheet(final, index=0)
+    sheet = sheet.df_to_sheet(final, index=0, replace=True)
+    print("Processed Nagoya data")
+    print()

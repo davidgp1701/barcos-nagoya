@@ -1,10 +1,43 @@
+import io
+import pandas as pd
 import requests
-import shutil
+import sheets
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
 sagunto_url = "https://www.valenciaportpcs.net/portcalls/Search/ExportBerths"
+worksheet_title = "Puerto Sagunto"
+
+unwanted_ships = [
+    "AFRICAN WIND",
+    "ATLANTIC ISLAND",
+    "AMILCAR",
+    "ARAMIS",
+    "AYA M",
+    "BARBARA P",
+    "BARCELONA EXPRESS",
+    "CMA CGM NEVA",
+    "ERLE",
+    "EUROCARGO LIVORNO",
+    "FRI BERGEN",
+    "GENOA EXPRESS",
+    "GLEN",
+    "GRANDE PORTOGALLO",
+    "JONA SOPHIE",
+    "LADY ANNEKE",
+    "LIVORNO EXPRESS",
+    "MISSISSAUGA EXPRESS",
+    "NASHWAN",
+    "OLD WINE",
+    "PROMISE",
+    "SIKINOS",
+    "SONANGOL SAMBIZANGA",
+    "SPRING BREEZE",
+    "STARVIP",
+    "ZUIDVLIET",
+    "SYROS ISLAND",
+]
 
 
 def setup():
@@ -14,6 +47,8 @@ def setup():
 
 
 def get_next_ships(session):
+    print("Requesting data from Sagunto")
+
     request_data = {
         "IsHistoricRequest": "False",
         "PortOfValencia": "false",
@@ -33,5 +68,12 @@ def get_next_ships(session):
     request_data["DateTo"] = two_months.strftime("%Y-%m-%d") + "T00:00:00"
 
     with session.post(sagunto_url, data=request_data, stream=True) as r:
-        with open("test.xls", "wb") as f:
-            shutil.copyfileobj(r.raw, f)
+        with io.BytesIO(r.content) as fh:
+            df = pd.io.excel.read_excel(fh, skiprows=3)
+            df = df[~df["Buque"].isin(unwanted_ships)]
+
+            sheet = sheets.get_sheet(worksheet_title)
+            sheet.df_to_sheet(df.iloc[::-1], index=0, replace=True)
+
+    print("Got data from Sagunto")
+    print()
