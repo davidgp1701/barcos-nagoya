@@ -4,6 +4,9 @@ WORKDIR /app
 
 
 FROM python as poetry
+# Needed for ARM images
+ARG BUILDDEPS="build-essential cargo libffi-dev libssl-dev rustc"
+RUN apt-get update && apt-get install -y ${BUILDDEPS} --no-install-recommends
 RUN python3 -m pip install poetry
 # ENV POETRY_HOME=/opt/poetry
 # ENV POETRY_VIRTUALENVS_IN_PROJECT=true
