@@ -70,6 +70,34 @@ def get_forward_movements():
     return ships
 
 
+def get_berth_movements(movements):
+    # Filter entrando
+    pattern = "W[0-9]?[0-9]?(\\.[0-9][0-9]?)?→"
+    to_berth = movements[movements["Embarcadero"].str.match(pattern)]
+    to_berth_all = movements[movements["Nombre"].isin(to_berth["Nombre"])]
+    to_berth_entrando = to_berth_all.loc[to_berth_all["Estado"] == "Entrando"]
+    to_delete = to_berth[to_berth["Nombre"].isin(to_berth_entrando["Nombre"])]
+    movements = (
+        pd.merge(movements, to_delete, indicator=True, how="outer").query('_merge=="left_only"').drop("_merge", axis=1)
+    )
+    movements.loc[movements["Embarcadero"].str.match(pattern), "Estado"] = "Entrando"
+
+    # Filter saliendo
+    pattern = ".*→W[0-9]?[0-9]?(\\.[0-9][0-9]?)?"
+    from_berth = movements[movements["Embarcadero"].str.match(pattern)]
+    from_berth_all = movements[movements["Nombre"].isin(from_berth["Nombre"])]
+    from_berth_entrando = from_berth_all.loc[from_berth_all["Estado"] == "Saliendo"]
+    from_delete = from_berth[from_berth["Nombre"].isin(from_berth_entrando["Nombre"])]
+    movements = (
+        pd.merge(movements, from_delete, indicator=True, how="outer")
+        .query('_merge=="left_only"')
+        .drop("_merge", axis=1)
+    )
+    movements.loc[movements["Embarcadero"].str.match(pattern), "Estado"] = "Saliendo"
+
+    return movements
+
+
 def update_forward_movements():
     print("Starting to process Nagoya data")
     ships = get_forward_movements()
@@ -81,6 +109,8 @@ def update_forward_movements():
     final = pd.concat([ships, previous_data]).drop_duplicates().reset_index(drop=True)
     final = final.sort_values(by=["Fecha"]).drop_duplicates(subset=["Nombre", "Estado", "Embarcadero"], keep="last")
     final = final.drop(final[final["Fecha"] < datetime.now() - timedelta(days=60)].index)
+
+    final = get_berth_movements(final)
 
     sheet = sheet.df_to_sheet(final, index=0, replace=True)
     print("Processed Nagoya data")
