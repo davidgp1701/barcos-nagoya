@@ -18,6 +18,7 @@ unwanted_ships = [
     "BARBARA P",
     "BARCELONA EXPRESS",
     "CMA CGM NEVA",
+    "EEMS STREAM",
     "ELYSSA",
     "ERLE",
     "EUROCARGO LIVORNO",
