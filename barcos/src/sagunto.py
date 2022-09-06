@@ -34,6 +34,7 @@ unwanted_ships = [
     "LADY ANNEKE",
     "LIVORNO EXPRESS",
     "LNG IMO",
+    "MARANT",
     "MISSISSAUGA EXPRESS",
     "NASHWAN",
     "OLD WINE",
