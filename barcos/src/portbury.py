@@ -39,6 +39,8 @@ def get_forward_movements():
             "A_Tugs",
             "A - PO",
             "apo_sort",
+            "ETD",
+            "etd_sort",
         ]
     )
 
