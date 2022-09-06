@@ -111,6 +111,7 @@ def update_forward_movements():
     final = final.drop(final[final["Fecha"] < datetime.now() - timedelta(days=60)].index)
 
     final = get_berth_movements(final)
+    final.sort_values(by=["Fecha", "Nombre"])
 
     sheet = sheet.df_to_sheet(final, index=0, replace=True)
     print("Processed Nagoya data")

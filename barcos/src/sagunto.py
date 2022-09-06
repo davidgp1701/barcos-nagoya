@@ -29,9 +29,11 @@ unwanted_ships = [
     "GLEN",
     "GRANDE PORTOGALLO",
     "GULF WEST",
+    "KRIENS",
     "JONA SOPHIE",
     "LADY ANNEKE",
     "LIVORNO EXPRESS",
+    "LNG IMO",
     "MISSISSAUGA EXPRESS",
     "NASHWAN",
     "OLD WINE",
@@ -40,8 +42,9 @@ unwanted_ships = [
     "SONANGOL SAMBIZANGA",
     "SPRING BREEZE",
     "STARVIP",
-    "ZUIDVLIET",
     "SYROS ISLAND",
+    "WILSON BRUGGE",
+    "ZUIDVLIET",
 ]
 
 
