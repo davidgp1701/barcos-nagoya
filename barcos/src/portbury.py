@@ -20,6 +20,8 @@ headers = {
 worksheet_title = "Puerto Portbury"
 
 wanted_ports = ["", "LIVORNO", "SAGUNTO"]
+wanted_docks = ["Portbury"]
+unwanted_agents = ["TU", "KESTREL", "MED"]
 
 
 def get_forward_movements():
@@ -49,6 +51,8 @@ def get_forward_movements():
 
     df = df.replace(r"^\s*$", "", regex=True)
     df = df[df["From"].isin(wanted_ports)]
+    df = df[df["Dock"].isin(wanted_docks)]
+    df = df[~df["Agent"].isin(unwanted_agents)]
 
     return df
 
