@@ -42,6 +42,7 @@ unwanted_ships = [
     "MARANT",
     "MISSISSAUGA EXPRESS",
     "NASHWAN",
+    "NORMA",
     "OLD WINE",
     "PROMISE",
     "SCHELDEDIJK",
