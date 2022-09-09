@@ -2,6 +2,7 @@ import pandas as pd
 import sheets
 import util
 from datetime import datetime, timedelta
+from gspread_formatting import cellFormat, format_cell_range, textFormat, set_column_width
 
 url = "https://www6.kaiho.mlit.go.jp/nagoyako/schedule/NAGOYAKO/schedule_3.html"
 worksheet_title = "Puerto Nagoya"
@@ -114,5 +115,24 @@ def update_forward_movements():
     final.sort_values(by=["Fecha", "Nombre"])
 
     sheet = sheet.df_to_sheet(final, index=0, replace=True)
+
+    format_cells()
     print("Processed Nagoya data")
     print()
+
+
+def format_cells():
+    worksheet = sheets.get_worksheet(worksheet_title)
+
+    fmt_header = cellFormat(
+        textFormat=textFormat(bold=True),
+    )
+    format_cell_range(worksheet, "1", fmt_header)
+
+    fmt_normal = cellFormat(textFormat=textFormat(bold=False))
+    format_cell_range(worksheet, "2:1000", fmt_normal)
+
+    set_column_width(worksheet, "A", 160)
+    set_column_width(worksheet, "B", 80)
+    set_column_width(worksheet, "C", 90)
+    set_column_width(worksheet, "D", 140)

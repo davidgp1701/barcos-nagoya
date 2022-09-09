@@ -5,6 +5,7 @@ import sheets
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from gspread_formatting import cellFormat, format_cell_range, textFormat, set_column_width
 
 sagunto_url = "https://www.valenciaportpcs.net/portcalls/Search/ExportBerths"
 worksheet_title = "Puerto Sagunto"
@@ -87,9 +88,33 @@ def get_next_ships(session):
         with io.BytesIO(r.content) as fh:
             df = pd.io.excel.read_excel(fh, skiprows=3)
             df = df[~df["Buque"].isin(unwanted_ships)]
+            df = df.drop(columns=["UN/LOCODE", "Puerto de escala"])
 
             sheet = sheets.get_sheet(worksheet_title)
             sheet.df_to_sheet(df.iloc[::-1], index=0, replace=True)
 
+    format_cells()
+
     print("Got data from Sagunto")
     print()
+
+
+def format_cells():
+    worksheet = sheets.get_worksheet(worksheet_title)
+
+    fmt_header = cellFormat(
+        textFormat=textFormat(bold=True),
+    )
+    format_cell_range(worksheet, "1", fmt_header)
+
+    fmt_normal = cellFormat(textFormat=textFormat(bold=False))
+    format_cell_range(worksheet, "2:1000", fmt_normal)
+
+    set_column_width(worksheet, "A", 160)
+    set_column_width(worksheet, "B", 85)
+    set_column_width(worksheet, "C", 70)
+    set_column_width(worksheet, "D", 130)
+    set_column_width(worksheet, "E", 130)
+    set_column_width(worksheet, "F", 200)
+    set_column_width(worksheet, "G", 200)
+    set_column_width(worksheet, "H", 200)

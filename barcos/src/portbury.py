@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import sheets
 from io import StringIO
+from gspread_formatting import cellFormat, format_cell_range, textFormat, set_column_width
 
 url = "https://www.bristolport.co.uk/export-table/45/ForwardMovements"
 
@@ -17,6 +18,8 @@ headers = {
 }
 
 worksheet_title = "Puerto Portbury"
+
+wanted_ports = ["", "LIVORNO", "SAGUNTO"]
 
 
 def get_forward_movements():
@@ -44,6 +47,9 @@ def get_forward_movements():
         ]
     )
 
+    df = df.replace(r"^\s*$", "", regex=True)
+    df = df[df["From"].isin(wanted_ports)]
+
     return df
 
 
@@ -52,6 +58,32 @@ def update_forward_movements():
     ships = get_forward_movements()
 
     sheet = sheets.get_sheet(worksheet_title)
-    sheet = sheet.df_to_sheet(ships, index=0, replace=True)
+    sheet.df_to_sheet(ships, index=0, replace=True)
+
+    format_cells()
+
     print("Processed Portbury data")
     print()
+
+
+def format_cells():
+    worksheet = sheets.get_worksheet(worksheet_title)
+
+    fmt_header = cellFormat(
+        textFormat=textFormat(bold=True),
+    )
+    format_cell_range(worksheet, "1", fmt_header)
+
+    fmt_normal = cellFormat(textFormat=textFormat(bold=False))
+    format_cell_range(worksheet, "2:1000", fmt_normal)
+
+    set_column_width(worksheet, "A", 160)
+    set_column_width(worksheet, "B", 90)
+    set_column_width(worksheet, "C", 130)
+    set_column_width(worksheet, "D", 100)
+    set_column_width(worksheet, "E", 60)
+    set_column_width(worksheet, "F", 90)
+    set_column_width(worksheet, "G", 100)
+    set_column_width(worksheet, "H", 40)
+    set_column_width(worksheet, "I", 100)
+    set_column_width(worksheet, "J", 100)
