@@ -46,6 +46,7 @@ unwanted_ships = [
     "NASHWAN",
     "NORMA",
     "OLD WINE",
+    "PLATON",
     "PROMISE",
     "SCHELDEDIJK",
     "SEAPEAK POLAR",
