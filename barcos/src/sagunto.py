@@ -18,10 +18,12 @@ unwanted_ships = [
     "AYA M",
     "BARBARA P",
     "BARCELONA EXPRESS",
+    "CIVARINA",
     "CL ZHUANG HE",
     "CMA CGM NEVA",
     "DETROIT EXPRESS",
     "ECO ADRIATICA",
+    "ECO MEDITERRANEA",
     "EEMS STREAM",
     "ELYSSA",
     "ERLE",
@@ -46,6 +48,7 @@ unwanted_ships = [
     "NASHWAN",
     "NORMA",
     "OLD WINE",
+    "PLATON",
     "PROMISE",
     "SCHELDEDIJK",
     "SEAPEAK POLAR",
@@ -56,6 +59,7 @@ unwanted_ships = [
     "SYROS ISLAND",
     "TEJO BELEM",
     "WILSON BRUGGE",
+    "WILSON FARSUND",
     "ZUIDVLIET",
 ]
 
