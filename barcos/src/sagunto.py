@@ -30,6 +30,7 @@ unwanted_ships = [
     "EUROCARGO LIVORNO",
     "EUROCARGO ROMA",
     "FRI BERGEN",
+    "FONNLAND",
     "GAS AEGEAN",
     "GASLOG  SANTIAGO",
     "GENOA EXPRESS",
