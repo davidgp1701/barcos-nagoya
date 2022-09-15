@@ -33,6 +33,7 @@ unwanted_ships = [
     "FRI BERGEN",
     "FONNLAND",
     "GAS AEGEAN",
+    "GAS VENUS",
     "GASLOG  SANTIAGO",
     "GENOA EXPRESS",
     "GLEN",
