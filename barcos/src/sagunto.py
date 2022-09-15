@@ -66,6 +66,7 @@ unwanted_ships = [
     "TEJO BELEM",
     "WILSON BRUGGE",
     "WILSON FARSUND",
+    "WILSON HERON",
     "ZUIDVLIET",
 ]
 
