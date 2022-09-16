@@ -58,6 +58,7 @@ unwanted_ships = [
     "PLATON",
     "PROMISE",
     "SCHELDEDIJK",
+    "SEAPEAK CATALUNYA",
     "SEAPEAK POLAR",
     "SIKINOS",
     "SONANGOL SAMBIZANGA",
