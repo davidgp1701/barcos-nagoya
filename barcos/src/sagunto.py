@@ -10,6 +10,8 @@ from gspread_formatting import cellFormat, format_cell_range, textFormat, set_co
 sagunto_url = "https://www.valenciaportpcs.net/portcalls/Search/ExportBerths"
 worksheet_title = "Puerto Sagunto"
 
+unwanted_terminals = ["PLANTA REGASIFICACION SGTO S.A"]
+
 unwanted_ships = [
     "AFRICAN WIND",
     "ATLANTIC ISLAND",
@@ -105,6 +107,7 @@ def get_next_ships(session):
         with io.BytesIO(r.content) as fh:
             df = pd.io.excel.read_excel(fh, skiprows=3)
             df = df[~df["Buque"].isin(unwanted_ships)]
+            df = df[~df["Terminal"].isin(unwanted_terminals)]
             df = df.drop(columns=["UN/LOCODE", "Puerto de escala"])
 
             sheet = sheets.get_sheet(worksheet_title)
