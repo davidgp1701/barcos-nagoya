@@ -15,6 +15,7 @@ unwanted_terminals = ["PLANTA REGASIFICACION SGTO S.A"]
 unwanted_ships = [
     "AFRICAN WIND",
     "AMBER SKY",
+    "ARTABRO",
     "ATLANTIC ISLAND",
     "AMILCAR",
     "ARAMIS",
