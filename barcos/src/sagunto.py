@@ -84,6 +84,7 @@ unwanted_ships = [
     "ULTRA SILVA",
     "TEJO BELEM",
     "THOMAS",
+    "TOP GRACE",
     "WILSON BRUGGE",
     "WILSON HAWK",
     "WILSON FARSUND",
