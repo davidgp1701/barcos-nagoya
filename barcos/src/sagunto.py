@@ -64,6 +64,7 @@ unwanted_ships = [
     "MARANT",
     "MARIA H",
     "MARYCAM SWAN",
+    "MEHMET DADAYLI-1",
     "MERI",
     "MISSISSAUGA EXPRESS",
     "MOSELDIJK",
