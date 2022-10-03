@@ -54,6 +54,7 @@ unwanted_ships = [
     "KOSMAN",
     "KRIENS",
     "JONA SOPHIE",
+    "LADY AMALIA",
     "LADY ANNEKE",
     "LADY ANNE BEAU",
     "LADY DEBORA",
