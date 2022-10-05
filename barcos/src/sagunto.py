@@ -12,6 +12,8 @@ worksheet_title = "Puerto Sagunto"
 
 unwanted_terminals = ["PLANTA REGASIFICACION SGTO S.A"]
 
+unwanted_consignatario = ["MARITIMA DEL MEDITERRANEO,S.A.", "MILLER Y CIA,S.A.", "SIMON MONTOLIO Y CIA.,S.A."]
+
 unwanted_ships = [
     "ABERDEEN",
     "AFRICAN WIND",
@@ -134,6 +136,7 @@ def get_next_ships(session):
             df = pd.io.excel.read_excel(fh, skiprows=3)
             df = df[~df["Buque"].isin(unwanted_ships)]
             df = df[~df["Terminal"].isin(unwanted_terminals)]
+            df = df[~df["Consignatario buque"].isin(unwanted_consignatario)]
             df = df.drop(columns=["UN/LOCODE", "Puerto de escala"])
 
             sheet = sheets.get_sheet(worksheet_title)
