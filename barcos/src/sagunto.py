@@ -31,6 +31,7 @@ unwanted_ships = [
     "CALA PALMA",
     "CELTIC AMBASSADOR",
     "CIUDAD DE BARCELONA",
+    "CIUDAD DE GRANADA",
     "CIVARINA",
     "CL ZHUANG HE",
     "CMA CGM NEVA",
@@ -49,6 +50,7 @@ unwanted_ships = [
     "GASLOG  SANTIAGO",
     "GENOA EXPRESS",
     "GLEN",
+    "GLASGOW EXPRESS",
     "GRANDE PORTOGALLO",
     "GULF WEST",
     "HERMANA",
@@ -100,6 +102,7 @@ unwanted_ships = [
     "WILSON HAWK",
     "WILSON FARSUND",
     "WILSON HERON",
+    "WILSON HOBRO",
     "ZUIDVLIET",
 ]
 
