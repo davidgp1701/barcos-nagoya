@@ -101,6 +101,7 @@ unwanted_ships = [
     "WILSON BRUGGE",
     "WILSON HAWK",
     "WILSON FARSUND",
+    "WILSON GOOLE",
     "WILSON HERON",
     "WILSON HOBRO",
     "ZUIDVLIET",
