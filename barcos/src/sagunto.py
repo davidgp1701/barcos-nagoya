@@ -28,6 +28,7 @@ unwanted_ships = [
     "BARBARA P",
     "BARCELONA EXPRESS",
     "BRENS",
+    "BYB RAVELIN",
     "CALA PALMA",
     "CELTIC AMBASSADOR",
     "CIUDAD DE BARCELONA",
