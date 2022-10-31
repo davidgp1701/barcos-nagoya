@@ -12,8 +12,7 @@ worksheet_title = "Puerto Sagunto"
 
 unwanted_terminals = ["PLANTA REGASIFICACION SGTO S.A"]
 
-unwanted_consignatario = ["MARITIMA DEL MEDITERRANEO,S.A.", "MILLER Y CIA,S.A.", "SIMON MONTOLIO Y CIA.,S.A."]
-
+unwanted_consignatario = ["MILLER Y CIA,S.A.", "SIMON MONTOLIO Y CIA.,S.A."]
 unwanted_ships = [
     "ABERDEEN",
     "AFRICAN WIND",
@@ -25,6 +24,7 @@ unwanted_ships = [
     "ARAMIS",
     "ASLI ELIF",
     "AYA M",
+    "BAHRI YANBU",
     "BARBARA P",
     "BARCELONA EXPRESS",
     "BRENS",
@@ -70,6 +70,7 @@ unwanted_ships = [
     "MARANT",
     "MARIA H",
     "MARYCAM SWAN",
+    "MEL GRACE",
     "MEHMET DADAYLI-1",
     "MERI",
     "MISSISSAUGA EXPRESS",
@@ -87,6 +88,7 @@ unwanted_ships = [
     "SCHELDEDIJK",
     "SEAPEAK CATALUNYA",
     "SEAPEAK POLAR",
+    "SEARAMBLER",
     "SIKINOS",
     "SMALAND",
     "SONANGOL SAMBIZANGA",
