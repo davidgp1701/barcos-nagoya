@@ -4,7 +4,7 @@ import portbury
 
 
 # Update portbury data
-portbury.update_forward_movements()
+# portbury.update_forward_movements()
 
 # Update Nagoya port information
 nagoya.update_forward_movements()

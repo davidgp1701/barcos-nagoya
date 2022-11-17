@@ -7,15 +7,22 @@ from gspread_formatting import cellFormat, format_cell_range, textFormat, set_co
 url = "https://www.bristolport.co.uk/export-table/45/ForwardMovements"
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
     "Accept-Language": "en-US,en;q=0.5",
     "Accept-Encoding": "gzip, deflate, br",
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Site": "none",
     "Sec-Fetch-User": "?1",
+    "sec-fetch-site": "same-origin",
+    "sec-ch-ua-platform": "Linux",
+    "sec-ch-ua": 'Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+    "referer": "https://www.bristolport.co.uk/shipping/forward-movements",
+    # "cookie": 'ga=GA1.3.2055490880.1668680259; _gid=GA1.3.1832092850.1668680259; _gat=1; has_js=1; ForwardMovements={"fields":"Rotn,Vessel,Agent,ETA,L x B,D,A - PO,Dock,Berth,ETD,D - PO,Flag,From,To,Purpose,A_Tugs,D_Tugs,PL,Comments,dD,Cargo","vis":"false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false","nid":"45"}',
 }
+
+#
 
 worksheet_title = "Puerto Portbury"
 
@@ -26,7 +33,11 @@ unwanted_agents = ["TU", "KESTREL", "MED"]
 
 def get_forward_movements():
     req = requests.get(url, headers=headers)
+
+    print("RAW data")
+    print(req.text)
     data = StringIO(req.text)
+    print(data.getvalue())
 
     df = pd.read_csv(data)
     df = df.drop(
