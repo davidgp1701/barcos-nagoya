@@ -34,10 +34,7 @@ unwanted_agents = ["TU", "KESTREL", "MED"]
 def get_forward_movements():
     req = requests.get(url, headers=headers)
 
-    print("RAW data")
-    print(req.text)
     data = StringIO(req.text)
-    print(data.getvalue())
 
     df = pd.read_csv(data)
     df = df.drop(
@@ -76,9 +73,6 @@ def update_forward_movements():
     sheet.df_to_sheet(ships, index=0, replace=True)
 
     format_cells()
-
-    print("Processed Portbury data")
-    print()
 
 
 def format_cells():
