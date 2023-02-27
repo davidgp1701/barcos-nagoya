@@ -35,8 +35,12 @@ def get_forward_movements():
     req = requests.get(url, headers=headers)
 
     data = StringIO(req.text)
+    print("RAW")
+    print(data)
 
     df = pd.read_csv(data)
+    print("Parsed")
+    print("CSV")
     df = df.drop(
         columns=[
             "Rotn",
@@ -56,6 +60,9 @@ def get_forward_movements():
             "etd_sort",
         ]
     )
+
+    print("Column drop")
+    print(df)
 
     df = df.replace(r"^\s*$", "", regex=True)
     df = df[df["From"].isin(wanted_ports)]
