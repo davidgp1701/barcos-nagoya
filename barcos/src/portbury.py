@@ -35,12 +35,8 @@ def get_forward_movements():
     req = requests.get(url, headers=headers)
 
     data = StringIO(req.text)
-    print("RAW")
-    print(data)
 
     df = pd.read_csv(data)
-    print("Parsed")
-    print("CSV")
     df = df.drop(
         columns=[
             "Rotn",
@@ -61,10 +57,11 @@ def get_forward_movements():
         ]
     )
 
-    print("Column drop")
-    print(df)
+    # print("Column drop")
+    # print(df)
 
     df = df.replace(r"^\s*$", "", regex=True)
+    df = df.fillna("")
     df = df[df["From"].isin(wanted_ports)]
     df = df[df["Dock"].isin(wanted_docks)]
     df = df[~df["Agent"].isin(unwanted_agents)]
